@@ -104,7 +104,13 @@ html, body {
 }
 
 .graph-container {
+    padding: 0;
     flex: 3;
+}
+.graph-container canvas {
+    max-width: 70%;
+    margin: 0 auto;
+    display: block;
 }
 
 .modern-box {
