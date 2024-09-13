@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,24 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="canvas">
+<div>
     <div class="circles">
-        <!-- Les cercles seront générés dynamiquement par JavaScript -->
+        <div class="circle design"></div>
+        <div class="circle research"></div>
+        <div class="circle design"></div>
+        <div class="circle research"></div>
+        <div class="circle design"></div>
+        <div class="circle research"></div>
     </div>
-    <div class="overlay"></div>
 </div>
 <div id="container_main">
     <div class="box-container">
         <div class="modern-box input-box">
-            <h2>Input</h2>
-            <p>Type something here...</p>
-            <label>
-                <input type="text" placeholder="Enter text" />
-            </label>
+            <form>
+                <h2>Input of values</h2>
+                <label>
+                    <span>R</span> <input type="number" placeholder="Ohm" />
+                </label>
+                <label>
+                    <span>L</span> <input type="number" placeholder="" />
+                </label>
+                <label>
+                    <span>C</span> <input type="number" placeholder="" />
+                </label>
+                <label>
+                    <span>E</span> <input type="number" placeholder="" />
+                </label>
+                <button>OK</button>
+            </form>
         </div>
 
         <div class="modern-box carousel-box">
-            <h2>Vertical Carousel</h2>
+            <h2>Choose your circuit</h2>
             <div class="wrapper">
                 <div class="carousel">
                     <div class="carousel__item active">
@@ -46,8 +60,8 @@
                 </div>
             </div>
             <div class="carousel-buttons">
-                <button id="prevBtn">Previous</button>
-                <button id="nextBtn">Next</button>
+                <button id="prevBtn"><</button>
+                <button id="nextBtn">></button>
             </div>
         </div>
     </div>
