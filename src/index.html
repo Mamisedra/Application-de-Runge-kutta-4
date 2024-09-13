@@ -2,60 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vertical Carousel with Animated Background</title>
+    <title>Animated Circles Background</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="container">
-    <div class="blur">
-        <div class="circle1"></div>
-        <div class="circle2"></div>
-        <div class="circle3"></div>
-        <div class="circle4"></div>
-        <div class="circle5"></div>
-        <div class="circle6"></div>
-        <div class="circle7"></div>
-        <div class="circle8"></div>
-        <div class="circle9"></div>
-        <div class="circle10"></div>
+<div class="canvas">
+    <div class="circles">
+        <!-- Les cercles seront générés dynamiquement par JavaScript -->
     </div>
+    <div class="overlay"></div>
 </div>
-
 <div id="container_main">
-    <div class="modern-box">
-        <h2>Input</h2>
-        <p>Type something here...</p>
-        <label>
-            <input type="text" placeholder="Enter text" />
-        </label>
-    </div>
+    <div class="box-container">
+        <div class="modern-box input-box">
+            <h2>Input</h2>
+            <p>Type something here...</p>
+            <label>
+                <input type="text" placeholder="Enter text" />
+            </label>
+        </div>
 
-    <div class="carousel-box modern-box">
-        <h2>Vertical Carousel</h2>
-        <div class="wrapper">
-            <div class="carousel">
-                <div class="carousel__item active">
-                    <img src="../circuits/Screenshot%20from%202024-09-12%2011-18-10.png" alt="Image 1" />
-                </div>
-                <div class="carousel__item">
-                    <img src="../circuits/Screenshot%20from%202024-09-12%2011-20-20.png" alt="Image 2" />
-                </div>
-                <div class="carousel__item">
-                    <img src="../circuits/Screenshot%20from%202024-09-12%2011-25-35.png" alt="Image 3" />
+        <div class="modern-box carousel-box">
+            <h2>Vertical Carousel</h2>
+            <div class="wrapper">
+                <div class="carousel">
+                    <div class="carousel__item active">
+                        <img src="../circuits/Screenshot%20from%202024-09-12%2011-18-10.png" alt="Image 1" />
+                    </div>
+                    <div class="carousel__item">
+                        <img src="../circuits/Screenshot%20from%202024-09-12%2011-20-20.png" alt="Image 2" />
+                    </div>
+                    <div class="carousel__item">
+                        <img src="../circuits/Screenshot%20from%202024-09-12%2011-25-35.png" alt="Image 3" />
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="carousel-buttons">
-            <button id="prevBtn">Previous</button>
-            <button id="nextBtn">Next</button>
+            <div class="carousel-buttons">
+                <button id="prevBtn">Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
         </div>
     </div>
 
-    <div class="modern-box">
-        <h2>Graph</h2>
-        <p>Graph content will be here.</p>
+    <div class="box-container graph-container">
+        <div class="modern-box">
+            <h2>Graph</h2>
+            <p>Graph content will be here.</p>
+        </div>
     </div>
 </div>
 
