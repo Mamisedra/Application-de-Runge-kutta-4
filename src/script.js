@@ -1,28 +1,7 @@
 // Carousel functionality
-import * as algo from "./algorithm.js";
-
 document.addEventListener('DOMContentLoaded', function() {
     const items = document.querySelectorAll('.carousel__item');
     let currentIndex = 0;
-
-    items.forEach((item, index) => {
-        const image = item.querySelector('img');
-        if (image) {
-            const key = `NBR_${index + 1}`;
-            if (algo.circuit[key]) {
-                image.src = algo.circuit[key];
-                image.alt = `Image ${index + 1}`;
-            }
-        }
-    });
-
-    function    get_data(t)
-    {
-        return ( labels.map(t => ({
-            x: t,
-            y: algo.eq_diff(t, key)
-        })));
-    }
 
     function showItem(index) {
         items.forEach((item, i) => {
@@ -47,7 +26,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const dataPoints = 100;
     const maxTime = 10;
     const labels = Array.from({ length: dataPoints }, (_, i) => i * (maxTime / dataPoints));
-    const data = get_data(t);
+    const data = labels.map(t => ({
+        x: t,
+        y: Math.exp(-0.5 * t) * Math.cos(5 * t)
+    }));
 
     const totalDuration = 10000; // Increased duration
     const delayBetweenPoints = totalDuration / dataPoints;
