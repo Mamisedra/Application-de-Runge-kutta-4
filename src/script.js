@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Carousel functionality
     const items = document.querySelectorAll('.carousel__item');
     let currentIndex = 0;
 
@@ -13,12 +14,12 @@ document.addEventListener('DOMContentLoaded', function() {
         showItem(currentIndex);
     }
 
-    // Afficher le premier élément par défaut
     showItem(currentIndex);
 
     document.getElementById('nextBtn').addEventListener('click', () => updateIndex(1));
     document.getElementById('prevBtn').addEventListener('click', () => updateIndex(-1));
 
+    // RLC Chart functionality
     const form = document.getElementById('circuitForm');
 
     form.addEventListener('submit', function(event) {
@@ -31,54 +32,69 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const activeImage = items[currentIndex].querySelector('img').src.split('/').pop();
 
-        let equationResult;
-        let data;
-
+        let equation;
         if (activeImage === "Rlc_en_serie.png") {
-            equationResult = calculateRLCSerie(resistance, inductance, capacitance, voltage);
-            data = generateChartData(equationResult);
+            equation = (t, y) => {
+                const [q, dq] = y;
+                return [
+                    dq,
+                    (voltage - dq * resistance - q / capacitance) / inductance
+                ];
+            };
         } else if (activeImage === "Rlc_en_parallele.png") {
-            equationResult = calculateRLCParallel(resistance, inductance, capacitance, voltage);
-            data = generateChartData(equationResult);
+            equation = (t, y) => {
+                const [q, dq] = y;
+                return [
+                    dq,
+                    (voltage - dq / capacitance - q / inductance) / resistance
+                ];
+            };
         } else if (activeImage === "Filtre_passe_bas.png") {
-            equationResult = calculateLowPassFilter(resistance, inductance, capacitance, voltage);
-            data = generateChartData(equationResult);
+            equation = (t, y) => {
+                const [q, dq] = y;
+                return [
+                    dq,
+                    (voltage - q / capacitance - dq * resistance) / inductance
+                ];
+            };
         }
 
+        const initialConditions = [1, 0]; // Updated initial values for q and dq
+        const result = rungeKutta4(equation, 0, 50, 0.01, initialConditions); // Extended time range and smaller step size
+        const data = generateChartData(result);
         updateChart(data);
     });
 
-    // Fonction de calculs
-    function calculateRLCSerie(R, L, C, E) {
-        const omega = 1 / Math.sqrt(L * C);
-        const alpha = R / (2 * L);
-        return (t) => E * Math.exp(-alpha * t) * Math.cos(omega * t);
+    // Runge-Kutta 4th order method
+    function rungeKutta4(equation, t0, tf, dt, y0) {
+        const steps = Math.floor((tf - t0) / dt);
+        const ts = [];
+        const ys = [];
+        let t = t0;
+        let y = [...y0];
+
+        for (let i = 0; i <= steps; i++) {
+            ts.push(t);
+            ys.push(y[0]);
+            const k1 = equation(t, y);
+            const k2 = equation(t + dt / 2, y.map((yi, j) => yi + k1[j] * dt / 2));
+            const k3 = equation(t + dt / 2, y.map((yi, j) => yi + k2[j] * dt / 2));
+            const k4 = equation(t + dt, y.map((yi, j) => yi + k3[j] * dt));
+            y = y.map((yi, j) => yi + dt / 6 * (k1[j] + 2 * k2[j] + 2 * k3[j] + k4[j]));
+            t += dt;
+        }
+        return { ts, ys };
     }
 
-    function calculateRLCParallel(R, L, C, E) {
-        const omega = 1 / Math.sqrt(L * C);
-        const alpha = R / (2 * L);
-        return (t) => E * Math.exp(-alpha * t) * Math.sin(omega * t);
-    }
-
-    function calculateLowPassFilter(R, L, C, E) {
-        const tau = R * C;
-        return (t) => E * (1 - Math.exp(-t / tau));
-    }
-
-    function generateChartData(equation) {
-        const dataPoints = 100;
-        const maxTime = 10;
-        const labels = Array.from({ length: dataPoints }, (_, i) => i * (maxTime / dataPoints));
-        const data = labels.map(t => ({
-            x: t,
-            y: equation(t)
-        }));
-        return { labels, data };
+    function generateChartData(result) {
+        return {
+            labels: result.ts,
+            data: result.ys.map((y, i) => ({ x: result.ts[i], y }))
+        };
     }
 
     function updateChart(chartData) {
-        const totalDuration = 10000; // Durée totale augmentée
+        const totalDuration = 10000; // Increased duration
         const delayBetweenPoints = totalDuration / chartData.data.length;
         const previousY = (ctx) => ctx.index === 0
             ? ctx.chart.scales.y.getPixelForValue(chartData.data[0].y)
@@ -120,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
             data: {
                 labels: chartData.labels,
                 datasets: [{
-                    label: 'q(t)',
+                    label: 'Variation de q(t)',
                     data: chartData.data,
                     borderColor: '#283030',
                     borderWidth: 2,
