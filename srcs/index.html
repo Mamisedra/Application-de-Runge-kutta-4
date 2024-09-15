@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Circles Background</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div id="cc">
+    <div class="circles">
+        <div class="circle design"></div>
+        <div class="circle research"></div>
+        <div class="circle design"></div>
+        <div class="circle research"></div>
+        <div class="circle design"></div>
+        <div class="circle research"></div>
+    </div>
+</div>
+<div id="container_main">
+    <div class="box-container">
+        <div class="modern-box input-box">
+            <form id="circuitForm">
+                <h2>Input of values</h2>
+                <label>
+                    <span>R</span> <input type="number" id="resistance" placeholder="Ohm" />
+                </label>
+                <label>
+                    <span>L</span> <input type="number" id="inductance" placeholder="H" />
+                </label>
+                <label>
+                    <span>C</span> <input type="number" id="capacitance" placeholder="F" />
+                </label>
+                <label>
+                    <span>E</span> <input type="number" id="voltage" placeholder="V" />
+                </label>
+                <button type="submit">OK</button>
+            </form>
+        </div>
+
+        <div class="modern-box carousel-box">
+            <h2>Choose your circuit</h2>
+            <div class="wrapper">
+                <div class="carousel">
+                    <div class="carousel__item active">
+                        <img src="../circuits/Rlc_en_serie.png" alt="Image 1" />
+                    </div>
+                    <div class="carousel__item">
+                        <img src="../circuits/Rlc_en_parallele.png" alt="Image 2" />
+                    </div>
+                    <div class="carousel__item">
+                        <img src="../circuits/Filtre_passe_bas.png" alt="Image 3" />
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="carousel-buttons">
+                <button id="prevBtn"><</button>
+                <button id="nextBtn">></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container graph-container">
+        <div class="modern-box">
+            <h2>Graph</h2>
+            <canvas id="rlcChart" width="800" height="600"></canvas>
+        </div>
+    </div>
+</div>
+<script src="../lib/chart.umd.min.js"></script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
