@@ -279,3 +279,24 @@ button {
 button:hover {
     background-color: #08BDBD;
 }
+label {
+    display: flex;
+    justify-content: space-between; /* Assure que le texte et l'input soient espacés */
+    align-items: center;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    max-width: 300px;
+    gap: 15px;
+}
+
+input[type="number"] {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    max-width: 150px;
+}
+
+
