@@ -14,14 +14,16 @@
 html, body {
     height: 100%;
     margin: 0;
+    scrollbar-width: hidden;
     overflow-y: auto;
+    overflow: hidden;
     background-color: var(--color-background, #EEEEEE); /* Fallback */
 }
 
 .circles {
     position: absolute;
-    width: 100%;
-    height: auto;
+    width: 90%;
+    height: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -101,7 +103,7 @@ html, body {
     display: flex;
     flex-direction: row;
     gap: 30px;
-    max-width: 150vh;
+    max-width: 220vh;
     width: auto;
     height: auto;
     margin: 10px auto;
@@ -134,8 +136,10 @@ html, body {
     flex: 3;
 }
 .graph-container canvas {
-    max-width: 80vh;
-    margin: 0 auto;
+    max-width: 200vh;
+    max-height: 80vh;
+    margin: 0;
+    margin-top: 40px;
     display: block;
 }
 

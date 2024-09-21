@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="src/style.css">
 
 </head>
 <body>
+<script>
+    window.onload = function() {
+        document.body.style.zoom = "85%";
+    };
+</script>
 <div id="cc">
     <div class="circles">
         <div class="circle design"></div>
@@ -44,13 +49,13 @@
             <div class="wrapper">
                 <div class="carousel">
                     <div class="carousel__item active">
-                        <img src="../circuits/Rlc_en_serie.png" alt="Image 1" />
+                        <img src="circuits/Rlc_en_serie.png" alt="Image 1" />
                     </div>
                     <div class="carousel__item">
-                        <img src="../circuits/Rlc_en_parallele.png" alt="Image 2" />
+                        <img src="circuits/Rlc_en_parallele.png" alt="Image 2" />
                     </div>
                     <div class="carousel__item">
-                        <img src="../circuits/Filtre_passe_bas.png" alt="Image 3" />
+                        <img src="circuits/Filtre_passe_bas.png" alt="Image 3" />
                     </div>
 
 
@@ -70,9 +75,7 @@
         </div>
     </div>
 </div>
-<script src="../lib/chart.umd.min.js"></script>
-<script src="script.js"></script>
-
-
+<script src="lib/chart.umd.min.js"></script>
+<script src="src/script.js"></script>
 </body>
 </html>
