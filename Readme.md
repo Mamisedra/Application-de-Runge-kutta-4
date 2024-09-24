@@ -14,5 +14,7 @@ Ce projet utilise l'algorithme de Runge-Kutta 4 pour résoudre les équations di
 4. Une fois le circuit sélectionné, cliquez sur « OK » pour afficher la courbe correspondant à vos paramètres.
 
 ## Contributeurs
-- Tonny
-- Mamisedra
+-RAJAOHARIVONY Haritody Tonny Raldo** (Numéro : 1A)
+
+-RANAIVOSON MAMISEDRA HARINIAINA** (Numéro : 11B)
+
